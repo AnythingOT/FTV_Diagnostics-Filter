@@ -36,6 +36,10 @@ jobs:
       - name: Build exe
         run: pyinstaller --onefile --windowed --name FTV_Diagnostics_Filter ftv_diagnostics_filter.py
 
+      - name: Write third-party licences
+        # Full licence texts of Python and Tcl/Tk, which the exe bundles.
+        run: python tools/collect_licenses.py --tkinter --app "FTV Diagnostics Filter" -o dist/THIRD_PARTY_LICENSES.txt
+
       - name: Smoke test the exe (CLI mode)
         shell: pwsh
         run: |
@@ -60,6 +64,7 @@ jobs:
           path: |
             dist/FTV_Diagnostics_Filter.exe
             dist/SHA256SUMS.txt
+            dist/THIRD_PARTY_LICENSES.txt
 
       - name: Publish release
         if: github.ref_type == 'tag' || inputs.tag != ''
@@ -73,7 +78,7 @@ jobs:
           $PSNativeCommandUseErrorActionPreference = $false
           $tag = if ($env:REF_TYPE -eq 'tag') { $env:REF_NAME } else { $env:TAG_INPUT.Trim() }
           if ($tag -notmatch '^v\d+\.\d+\.\d+$') { throw "Tag must look like v1.2.3, got '$tag'" }
-          $files = 'dist\FTV_Diagnostics_Filter.exe', 'dist\SHA256SUMS.txt'
+          $files = 'dist\FTV_Diagnostics_Filter.exe', 'dist\SHA256SUMS.txt', 'dist\THIRD_PARTY_LICENSES.txt'
           gh release view $tag *> $null
           if ($LASTEXITCODE -eq 0) {
             # release already exists (e.g. created on the web): replace its files
@@ -81,6 +86,6 @@ jobs:
           } else {
             gh release create $tag @files --target $env:GITHUB_SHA `
               --title "FTV Diagnostics Filter $tag" `
-              --notes "Windows build. Download FTV_Diagnostics_Filter.exe and run it - no Python needed. The exe is unsigned, so Windows SmartScreen may warn on first launch (More info -> Run anyway). Verify the download against SHA256SUMS.txt."
+              --notes "Windows build. Download FTV_Diagnostics_Filter.exe and run it - no Python needed. The exe is unsigned, so Windows SmartScreen may warn on first launch (More info -> Run anyway). Verify the download against SHA256SUMS.txt. THIRD_PARTY_LICENSES.txt holds the licences of Python and Tcl/Tk, which the exe bundles; keep it with the exe if you pass it on."
           }
           if ($LASTEXITCODE -ne 0) { throw "gh release failed" }
