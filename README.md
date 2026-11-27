@@ -86,7 +86,10 @@ To build it yourself:
 ```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed --name FTV_Diagnostics_Filter ftv_diagnostics_filter.py
+python tools/collect_licenses.py --tkinter --app "FTV Diagnostics Filter" -o dist/THIRD_PARTY_LICENSES.txt
 ```
+
+If you pass the exe on, give `dist/THIRD_PARTY_LICENSES.txt` along with it.
 
 ## Tests
 
@@ -105,3 +108,10 @@ python -m unittest discover tests
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+The exe bundles Python and tkinter (PSF License) and Tcl/Tk (BSD-style): see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Each release attaches
+`THIRD_PARTY_LICENSES.txt` with their full texts; keep it with the exe if you pass it on.
+
+Not affiliated with or endorsed by Rockwell Automation. FactoryTalk is a trademark of
+Rockwell Automation, Inc.
