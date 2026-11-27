@@ -63,14 +63,26 @@ Run `python ft_diagnostic_filter.py --help` for all options.
 3. Otherwise, the *contains* rules must **all** match (All) or **at least one** must match (Any).
 4. If there are no *contains* rules, every row that wasn't dropped is kept.
 
-## Building a Windows .exe (optional)
+## Download (Windows .exe)
+
+Get `FT_Diagnostic_Filter.exe` from the [Releases](../../releases) page. You don't need Python.
+
+- The exe is **unsigned**, so Windows SmartScreen may warn on first launch (*More info → Run anyway*).
+- Antivirus tools sometimes flag PyInstaller executables falsely. On managed plant PCs, check with IT before you distribute one.
+- Check the download against `SHA256SUMS.txt`: `Get-FileHash FT_Diagnostic_Filter.exe`
+
+Releases are built automatically by GitHub Actions (`.github/workflows/release.yml`) when a version tag is pushed:
+
+```bash
+git tag v1.0.1 && git push origin v1.0.1
+```
+
+To build it yourself:
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --name "FT Diagnostic Filter" ft_diagnostic_filter.py
+pyinstaller --onefile --windowed --name FT_Diagnostic_Filter ft_diagnostic_filter.py
 ```
-
-Antivirus tools sometimes flag PyInstaller executables falsely. On managed plant PCs, check with IT before you distribute one.
 
 ## Tests
 
