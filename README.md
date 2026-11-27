@@ -8,6 +8,10 @@ A desktop tool for filtering **FactoryTalk Diagnostics Viewer** XML exports. You
 
 Excel's AutoFilter only allows two text conditions per column. This tool removes that limit, and it reads the raw export directly, including UTF-16 files and files with protected or garbled sections.
 
+
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/35019213-075d-4c9d-947a-c07eb5130833" />
+
+
 ## Features
 
 - **Unlimited filter rules.** Each rule picks a field (message, any field, location, provider, severity, username), *contains* or *does not contain*, and the text to match
