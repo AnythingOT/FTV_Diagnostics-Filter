@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.spec
+.venv/
+venv/
+
+# keep real plant exports and outputs out of the repo
+*.xml
+!samples/*.xml
+*_filtered.csv
+*.csv
+presets/
