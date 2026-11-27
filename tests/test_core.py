@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from ft_diagnostic_filter import (build_matcher, main, parse_items,  # noqa: E402
+from ftv_diagnostics_filter import (build_matcher, main, parse_items,  # noqa: E402
                                   read_text, write_csv)
 
 SAMPLE = ROOT / "samples" / "sample_export.xml"

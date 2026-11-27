@@ -1,15 +1,15 @@
 """
-FT Diagnostic Filter - by AnythingOT
+FTV Diagnostics Filter - by AnythingOT
 Filter FactoryTalk Diagnostics Viewer XML exports with unlimited
 contains / does-not-contain rules, preview the results, export to CSV.
 
 GUI:
-    python ft_diagnostic_filter.py
-    python ft_diagnostic_filter.py export.xml            (opens with file loaded)
+    python ftv_diagnostics_filter.py
+    python ftv_diagnostics_filter.py export.xml            (opens with file loaded)
 
 Command line (no window):
-    python ft_diagnostic_filter.py export.xml --contains DataLog --exclude Off
-    python ft_diagnostic_filter.py export.xml -c Tank -c Pump --any -o out.csv
+    python ftv_diagnostics_filter.py export.xml --contains DataLog --exclude Off
+    python ftv_diagnostics_filter.py export.xml -c Tank -c Pump --any -o out.csv
 
 Uses regex, not an XML parser, so protected/garbled sections elsewhere in
 the export don't stop it - it pulls out every <Item ...> element it can read.
@@ -31,8 +31,8 @@ try:
 except ImportError:  # core logic and CLI still work without Tk
     tk = ttk = filedialog = messagebox = tkfont = None
 
-APP_NAME = "FT Diagnostic Filter"
-APP_VERSION = "1.0.0"
+APP_NAME = "FTV Diagnostics Filter"
+APP_VERSION = "1.0.1"
 BRAND = "AnythingOT"
 
 FIELDS = ["datetime", "location", "provider", "severity", "message", "username"]
@@ -690,7 +690,7 @@ class App:
 # ===================================================================== main
 def _parser():
     p = argparse.ArgumentParser(
-        prog="ft_diagnostic_filter",
+        prog="ftv_diagnostics_filter",
         description=f"{APP_NAME} v{APP_VERSION} ({BRAND}). "
                     "With no --contains/--exclude options the GUI opens.")
     p.add_argument("file", nargs="?", help="FactoryTalk Diagnostics XML export")

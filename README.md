@@ -1,4 +1,4 @@
-# FT Diagnostic Filter
+# FTV Diagnostics Filter
 
 **by AnythingOT**
 
@@ -33,8 +33,8 @@ Python 3.8+ with Tkinter. The python.org Windows installer includes Tkinter by d
 ### GUI
 
 ```bash
-python ft_diagnostic_filter.py
-python ft_diagnostic_filter.py export.xml        # open with a file loaded
+python ftv_diagnostics_filter.py
+python ftv_diagnostics_filter.py export.xml        # open with a file loaded
 ```
 
 | Shortcut | Action |
@@ -49,16 +49,16 @@ python ft_diagnostic_filter.py export.xml        # open with a file loaded
 
 ```bash
 # message contains "DataLog" but not "Off"
-python ft_diagnostic_filter.py export.xml -c DataLog -x Off
+python ftv_diagnostics_filter.py export.xml -c DataLog -x Off
 
 # message contains "Tank" OR "Pump", custom output file
-python ft_diagnostic_filter.py export.xml -c Tank -c Pump --any -o tanks_pumps.csv
+python ftv_diagnostics_filter.py export.xml -c Tank -c Pump --any -o tanks_pumps.csv
 
 # regex on any field
-python ft_diagnostic_filter.py export.xml -c "DataLog(On|Off)" --regex --field "any field"
+python ftv_diagnostics_filter.py export.xml -c "DataLog(On|Off)" --regex --field "any field"
 ```
 
-Run `python ft_diagnostic_filter.py --help` for all options.
+Run `python ftv_diagnostics_filter.py --help` for all options.
 
 ## How matching works
 
@@ -69,11 +69,11 @@ Run `python ft_diagnostic_filter.py --help` for all options.
 
 ## Download (Windows .exe)
 
-Get `FT_Diagnostic_Filter.exe` from the [Releases](../../releases) page. You don't need Python.
+Get `FTV_Diagnostics_Filter.exe` from the [Releases](../../releases) page. You don't need Python.
 
 - The exe is **unsigned**, so Windows SmartScreen may warn on first launch (*More info → Run anyway*).
 - Antivirus tools sometimes flag PyInstaller executables falsely. On managed plant PCs, check with IT before you distribute one.
-- Check the download against `SHA256SUMS.txt`: `Get-FileHash FT_Diagnostic_Filter.exe`
+- Check the download against `SHA256SUMS.txt`: `Get-FileHash FTV_Diagnostics_Filter.exe`
 
 Releases are built automatically by GitHub Actions (`.github/workflows/release.yml`) when a version tag is pushed:
 
@@ -85,7 +85,7 @@ To build it yourself:
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --name FT_Diagnostic_Filter ft_diagnostic_filter.py
+pyinstaller --onefile --windowed --name FTV_Diagnostics_Filter ftv_diagnostics_filter.py
 ```
 
 ## Tests
